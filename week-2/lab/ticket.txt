@@ -1,0 +1,13 @@
+Invoice Number:   MeNy139520720200025
+Date:             2/07/2020
+Time:             00:25:42
+                  
+Item              Quantity    Price Total
+===================================
+Chicken Shwarma Pita   3   $3.99  $11.97
+French Fries           4   $2.99  $11.96
+Grapefruit Juice       5   $2.50  $12.5
+===================================
+Subtotal                       $36.43
+6.25% sales tax                $2.28
+Total                          $38.71
