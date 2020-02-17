@@ -278,8 +278,8 @@ class Number{
 		   
 		   return colOrder;
 	   }
-	   // Not finished Method 
-	   /*public static void printRow(int[][] matrix, int row, int num_cols){
+	   
+	   public static void printRow(int[][] matrix, int row, int num_cols){
 		   
 		   //length of the rows in the printed matrix
 		   double size = Math.ceil(((matrix[row].length/num_cols)));
@@ -287,28 +287,29 @@ class Number{
 		   // creating the printRow matrix
 		   int [][] printRow = new int [sizeInt][num_cols];
 		   // nested loop to fill the table with the numbers
-		   for (int i = 0; i < matrix[row].length; i++) {
+		   for (int i = 0; i < sizeInt; i++) {
 				for (int j = 0; j < num_cols; j++) {
 					// introducing the numbers into the table
-					printRow[i - (i * sizeInt)][j] = matrix[row][i];
+					printRow[i][j] = matrix[row][i + (sizeInt * j)];
 				}// End inner for  
 			}// End outer for
-		   System.out.println(printRow);
-	   }*/
+		   System.out.println(Arrays.deepToString(printRow));
+	   }
 	   
 	   public static int smallestChange(int[][] matrix){
 		   // reference value
 		   int smallestChange = 0;
 		   // for loop to iterate in each row
+		   System.out.println("///////////////////////////////////////////");
 		   for (int i = 0; i < matrix.length; i++) {
 			   // calling method to obtain percent change arrays  
 			   matrix [i]= percentChange(matrix[i]);
-			   
-				}// End for loop
-		   // for loop to get max and min values from each percent change array
+			   //System.out.println(Arrays.toString(matrix[i]));
+		   }// End for loop
+		   // for loop to check the difference between max and min of each change row and find the smallest one
 		   for (int i = 1; i < matrix.length; i++) {
 			   // if statement to compare the difference between the max and the min change
-			   if((findMax(matrix[i]) - findMin(matrix[i])) < (findMax(matrix[i-1]) - findMin(matrix[i-1]))){
+			   if((findMax(matrix[i]) - findMin(matrix[i])) < findMax(matrix[i-1]) - findMin(matrix[i-1])){
 				   smallestChange = i;
 			   }
 			   else {
@@ -339,6 +340,7 @@ class Number{
 		   System.out.println(findMinOfColumn(matrixRow,2));
 		   // Exercise 3:
 		   int[][] matrixCol = colOrder();
+		   printRow(matrixCol,5,4);
 		   System.out.println(Arrays.deepToString(matrixCol).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
 		   System.out.println(smallestChange(matrixCol));
 		   
