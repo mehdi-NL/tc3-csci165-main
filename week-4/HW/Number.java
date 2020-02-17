@@ -10,15 +10,15 @@ class Number{
 // Exercise 1:
 	// method to read and group data in a 1D array
 	// Throw exception replaces the try-catch
-	
+
 	   public static int [] array1D() throws IOException{
-		
+
 		   // Creating scanner and a file reader object to read the file
 		   FileReader fr   = new FileReader("number_list.txt");
 		   Scanner number = new Scanner(fr);
 		   // amount of data
 		   int count = 1000;
-		
+
 		   // create empty array
 		   int [] array1D = new int [count];
 		   // index variable
@@ -31,11 +31,11 @@ class Number{
 		   // closing scanner and file reader objects
 		   number.close();
 		   fr.close();
-		   
+
 		   return array1D;
-		   
+
 	   }
-	  
+
 	   // Throw exception replaces the try-catch
 	   public static void fillArray(int[] array) throws IOException{
 		   // Creating scanner and a file reader object to read the file
@@ -59,9 +59,9 @@ class Number{
 		   number.close();
 		   fr.close();
 		   System.out.println(fillArray);
-		 
+
 	   }
-	  
+
 	   public static int findMax(int[] array) {
 		   // sorting the array
 		   Arrays.sort(array);
@@ -69,20 +69,20 @@ class Number{
 		   int max =  array[array.length-1];
 		   // returning the maximum value
 		   return max;
-		   
+
 	   }
-	   
+
 	   public static int findMin(int[] array) {
-		   
+
 		// sorting the array
 		   Arrays.sort(array);
 		   // selecting the smallest value
 		   int min =  array[0];
 		   // returning the minimum value
 		   return min;
-		   
+
 	   }
-	   
+
 	   public static int[] percentChange(int[] array){
 		   // new array to introduce the percent change
 		   int [] percentChange = new int [array.length -1];
@@ -93,12 +93,12 @@ class Number{
 		   }// End for loop
 		   return percentChange;
 	   }
-	   
+
 // Exercise 2:
 	// method to read and group data in row major order
-	// Throw exception replaces the try-catch	
+	// Throw exception replaces the try-catch
 	   public static int[][] rowOrder() throws IOException{
-		   
+
 		   // creating the matrix
 		   int [][] rowOrder = new int [50][20];
 		   // Creating scanner and a file reader object to read the file
@@ -109,19 +109,19 @@ class Number{
 			   for (int j = 0; j < rowOrder[i].length; j++) {
 				   // introducing the numbers into the table
 				   rowOrder[i][j] = number.nextInt();
-			   }// End inner for  
+			   }// End inner for
 		   }// End outer for
-		   
+
 		   // closing scanner and file reader objects
 		   number.close();
 		   fr.close();
-		   
+
 	   return rowOrder;
-	   
+
 	   }
-	   // Throw exception replaces the try-catch	
+	   // Throw exception replaces the try-catch
 	   public static void fillArray(int[][] matrix) throws IOException{
-		   
+
 		   // creating the matrix
 		   int [][] table = new int [50][20];
 		   // Creating scanner and a file reader object to read the file
@@ -132,16 +132,16 @@ class Number{
 			   for (int j = 0; j < table[i].length; j++) {
 				   // introducing the numbers into the table
 				   table[i][j] = number.nextInt();
-			   }// End inner for  
+			   }// End inner for
 		   }// End outer for
-		   
+
 		   // closing scanner and file reader objects
 		   number.close();
 		   fr.close();
 	   }
-	   
+
 	   public static int findMax(int[][] matrix){
-		   
+
 		   // taking first value as reference
 		   int max = matrix [0][0];
 		   // nested loop to iterate inside the table
@@ -156,13 +156,13 @@ class Number{
 				   }
 			   }// End inner for
 		   }// End outer for
-		   
+
 		   return max;
-		   
+
 	   }
-	   
+
 	   public static int findMin(int[][] matrix){
-		   
+
 		   // taking first value as reference
 		   int min = matrix [0][0];
 		   // nested loop to iterate inside the table
@@ -177,13 +177,13 @@ class Number{
 				   }
 			   }// End inner for
 		   }// End outer for
-		 
+
 		   return min;
-		   
+
 	   }
-	   
+
 	   public static int findMaxOfRow(int[][] matrix, int row) {
-		   
+
 		// taking first value as reference
 		   int maxOfRow = matrix [row][0];
 		   // loop to iterate inside the row
@@ -193,15 +193,15 @@ class Number{
 			   maxOfRow = matrix[row][j];
 			   }
 			   else {
-				   
+
 				   return maxOfRow;
 			   }
 		   }// End for loop
 		   return maxOfRow;
 		}
-	  
+
 	   public static int findMinOfRow(int[][] matrix, int row) {
-		   
+
 		// taking first value as reference
 		   int minOfRow = matrix [row][0];
 		   // loop to iterate inside the row
@@ -211,15 +211,15 @@ class Number{
 				   minOfRow = matrix[row][j];
 			   }
 			   else {
-				   
+
 				   return minOfRow;
 			   }
 		   }// End for loop
 		   return minOfRow;
 		}
-	   
+
 	   public static int findMaxOfColumn(int[][] matrix, int column) {
-		   
+
 		// taking first value as reference
 		   int maxOfCol = matrix [0][column];
 		   // loop to iterate inside the column
@@ -229,16 +229,16 @@ class Number{
 				   maxOfCol = matrix[i][column];
 			   }
 			   else {
-				   
+
 				   return maxOfCol;
 			   }
 		   }// End for loop
 		   return maxOfCol;
 		}
-	
-	   
+
+
 	   public static int findMinOfColumn(int[][] matrix, int column){
-		   
+
 		// taking first value as reference
 		   int minOfCol = matrix [0][column];
 		   // loop to iterate inside the column
@@ -248,15 +248,15 @@ class Number{
 				   minOfCol = matrix[i][column];
 			   }
 			   else {
-				   
+
 				   return minOfCol;
 			   }
 		   }// End for loop
 		   return minOfCol;
-	
+
 	   }
 // Exercise 3:
-	   
+
 	   // method to read and group data in column major order
 	   public static int [][] colOrder () throws IOException {
 		// creating the matrix
@@ -269,18 +269,18 @@ class Number{
 			   for (int i = 0; i < colOrder.length; i++) {
 				   // introducing the numbers into the table
 				   colOrder[i][j] = number.nextInt();
-			   }// End inner for  
+			   }// End inner for
 		   }// End outer for
-		   
+
 		   // closing scanner and file reader objects
 		   number.close();
 		   fr.close();
-		   
+
 		   return colOrder;
 	   }
-	   
+
 	   public static void printRow(int[][] matrix, int row, int num_cols){
-		   
+
 		   //length of the rows in the printed matrix
 		   double size = Math.ceil(((matrix[row].length/num_cols)));
 		   int sizeInt = (int)size;
@@ -291,35 +291,35 @@ class Number{
 				for (int j = 0; j < num_cols; j++) {
 					// introducing the numbers into the table
 					printRow[i][j] = matrix[row][i + (sizeInt * j)];
-				}// End inner for  
+				}// End inner for
 			}// End outer for
 		   System.out.println(Arrays.deepToString(printRow));
 	   }
-	   
+
 	   public static int smallestChange(int[][] matrix){
 		   // reference value
 		   int smallestChange = 0;
 		   // for loop to iterate in each row
 		   System.out.println("///////////////////////////////////////////");
 		   for (int i = 0; i < matrix.length; i++) {
-			   // calling method to obtain percent change arrays  
+			   // calling method to obtain percent change arrays
 			   matrix [i]= percentChange(matrix[i]);
 			   //System.out.println(Arrays.toString(matrix[i]));
 		   }// End for loop
 		   // for loop to check the difference between max and min of each change row and find the smallest one
 		   for (int i = 1; i < matrix.length; i++) {
 			   // if statement to compare the difference between the max and the min change
-			   if((findMax(matrix[i]) - findMin(matrix[i])) < findMax(matrix[i-1]) - findMin(matrix[i-1])){
+			   if(Math.abs((findMax(matrix[i]) - findMin(matrix[i]))) < Math.abs(findMax(matrix[i-1]) - findMin(matrix[i-1]))){
 				   smallestChange = i;
 			   }
 			   else {
 				   return smallestChange;
 			   }
 			   }// End for loop
-		   
+
 		   return smallestChange;
-		   
-		   
+
+
 	   }
 	   // main method to test the code
 	   public static void main(String[] args) throws IOException {
@@ -343,6 +343,6 @@ class Number{
 		   printRow(matrixCol,5,4);
 		   System.out.println(Arrays.deepToString(matrixCol).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
 		   System.out.println(smallestChange(matrixCol));
-		   
+
 	   }
 }
