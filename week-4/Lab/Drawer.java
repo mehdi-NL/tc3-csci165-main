@@ -43,32 +43,36 @@ class Drawer extends JPanel {
         */
 
         Graphics2D g2d = (Graphics2D) g;
+        
+        int [][] matrix = MapDataDrawer.map;
+        int BLACK = MapDataDrawer.findMin(matrix);
+		int WHITE = MapDataDrawer.findMax(matrix);
+		int GRAY_LOW = WHITE - (((WHITE-BLACK)/3)*2);
+		int GRAY_HIGH = WHITE - (((WHITE-BLACK)/3));
+		
 
-        int x = 10, y = 10;
-        for(int i = 0; i < 30; ++i){
-            g2d.drawRect(x, y, 10, 10);
-            y += 15;
-        }
-
-        g2d.setColor(new Color(0, 0, 0));
-        y = 10; x += 15;
-        for(int i = 0; i < 30; ++i){
-            g2d.fillRect(x, y, 20, 10);
-            y += 15;
-        }
-
-        g2d.setColor(new Color(128, 128, 128));
-        y = 10; x += 15;
-        for(int i = 0; i < 30; ++i){
-            g2d.fillRect(x, y, 10, 10);
-            y += 15;
-        }
-
-        g2d.setColor(new Color(200, 200, 200));
-        y = 10; x += 15;
-        for(int i = 0; i < 30; ++i){
-            g2d.fillOval(x, y, 10, 10);
-            y += 15;
+        int x = 0, y = 0;
+        for(int c = 0; c < matrix[0].length; c++) {
+        	for(int r = 0; r < matrix.length; r++) {
+        		if(BLACK <= matrix[r][c] && matrix[r][c] < GRAY_LOW) {
+        			g2d.setColor(Color.black);
+	        		g2d.fillRect(x, y, 1, 1);
+	                y += 1;
+	                x += 1;
+                 }
+        		if(GRAY_LOW <= matrix[r][c] && matrix[r][c] <= GRAY_HIGH) {
+        			g2d.setColor(Color.gray);
+	        		g2d.fillRect(x, y, 1, 1);
+	                y += 1;
+	                x += 1;
+                 }
+        		if(GRAY_HIGH < matrix[r][c] && matrix[r][c] <= WHITE) {
+        			g2d.setColor(Color.white);
+	        		g2d.fillRect(x, y, 1, 1);
+	                y += 1;
+	                x += 1;
+                 }
+        	}
         }
 
         int width = getWidth();
