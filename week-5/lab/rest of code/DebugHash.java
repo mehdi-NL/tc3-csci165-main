@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  *
  */
 public class DebugHash {
-
+	static int i = 0;
 	/**
 	 * Using a supplied seed value, compute arbitrary (but repeatable) values
 	 * based upon an underlying hashing algorithm.
@@ -28,7 +28,7 @@ public class DebugHash {
 		}
 		
 		byte[] last_hash = {seed};
-
+		
 		while (true) {
 			md5.update(last_hash);
 			byte[] new_hash = md5.digest();
@@ -37,6 +37,7 @@ public class DebugHash {
 			System.out.println(hashString);
 			
 			last_hash = new_hash;
+			i++;
 		}
 	}
 	
