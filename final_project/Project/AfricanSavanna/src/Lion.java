@@ -5,12 +5,32 @@ public class Lion extends Animal{
 	private int sharpTeeth;
 	private Coordinates [] rangeVision;
 	
-	public Lion(Coordinates position, String color) {
-		super(position,color);
+	public Lion(Coordinates position) {
+		super(position);
 		
 		this.hunter      = false;
 		this.sharpTeeth  = 100;
+		setColor();
 		setRange();
+		
+	}
+	
+	@Override
+	public void setColor() {
+		int health = getHealth();
+		
+		if( health >= 70) {
+			this.color =  "orange";
+		}
+		if( 40 <= health && health < 70) {
+			this.color =  "pink";
+		}
+		if(0 < health && health < 40) {
+			this.color =  "red";;
+		}
+		if ( health == 0){
+			this.color =  "black";
+		}
 		
 	}
 	
@@ -70,7 +90,8 @@ public class Lion extends Animal{
 	public void move() {
 		// use coordinates class
 		// Add one random nearby position if hunter == false
-		status();
+		setHealth(getHealth() - 1);
+		//status();
 		int row = getPosition().getRow() ;
 		int column = getPosition().getColumn();
 		int randomInt = (int)((Math.random()*2) - 1);
@@ -99,34 +120,75 @@ public class Lion extends Animal{
 			setPosition(getPosition()) ;
 		}
 		else {
-			if(row < 65) {
+			if(row < 65 && hunter == true) {
 				getPosition().setCoordinates(row + 1, column);
 				setPosition(getPosition()) ;
 			}
 			else {
 				getPosition().setCoordinates(65, column);
-				setPosition(getPosition()) ;
-				attack();
+				setPosition(getPosition());
+				//Check if there is a gazelle
+				Pair [][] range = {{Drawer.pairs[row+1][column-1],Drawer.pairs[row+1][column],
+							   Drawer.pairs[row+1][column+1]}, {
+							   Drawer.pairs[row+2][column-1],
+							   Drawer.pairs[row+2][column],Drawer.pairs[row+2][column+1]}};
+				
+				for(Pair [] line: range) {
+					for(Pair prey: line) {
+						if(prey.getAnimal() instanceof Gazelle ) {
+							attack();
+							prey.getAnimal().die();
+						}
+						else {
+							continue;
+						}
+					}
+				}
 			}
 		}
 	}
 	// working on attack method
 	public void attack() {
 		
-		int animalRow = getPosition().getRow();
-		int animalCol = getPosition().getColumn();
+		int row    = getPosition().getRow();
+		int column = getPosition().getColumn();
 		
-		Coordinates point1 = new Coordinates (animalRow + 1, animalCol -1);
-		Coordinates point2 = new Coordinates (animalRow + 1, animalCol   );
-		Coordinates point3 = new Coordinates (animalRow + 1, animalCol +1);
-		Coordinates point4 = new Coordinates (animalRow + 2, animalCol -1);
-		Coordinates point5 = new Coordinates (animalRow + 2, animalCol   );
-		Coordinates point6 = new Coordinates (animalRow + 2, animalCol +1);
+		getPosition().setCoordinates(row + 1, column);
+		setPosition(getPosition()) ;
+		// restore health
+		setHealth(100);
+		// end hunter mode
+		this.hunter = false;
 		
-		//for(Pair [] pairRange:  ) {
-			
-		//}
+	}
+	
+	@Override
+	public void die() {
 		
+		setAllNull();
+		this.color 		 = null;
+		this.hunter 	 = false;
+		this.rangeVision = null;
+		this.sharpTeeth  = 0;
+		
+	}
+	@Override
+	public void duplicate() {
+		int row = getPosition().getRow() ;
+		int column = getPosition().getColumn();
+		
+		if(getHealth() == 70) {
+			if(column == 99 && Drawer.pairs[row][98].getAnimal().equals(null)) {
+				Coordinates positionLion = new Coordinates(row,98);
+				Lion lion = new Lion(positionLion);
+				Drawer.pairs[row][98].setAnimal(lion);
+			}
+			if(column == 0 && Drawer.pairs[row][1].getAnimal().equals(null)) {
+				Coordinates positionLion = new Coordinates(row,1);
+				Lion lion = new Lion(positionLion);
+				Drawer.pairs[row][1].setAnimal(lion);
+			}
+		}
 		
 	}
 	

@@ -2,23 +2,21 @@
 public abstract class Animal {
 	
 	private int life;
-	private String color;
+	public  String color;
 	private int health;
 	private Coordinates [] rangeVision;
 	private Coordinates position;
 	
-	
-	public Animal(Coordinates position, String color) {
-		this.life        = 0;
-		setColor();
-		this.health      = 100;
+	public Animal(Coordinates position) {
+		this.life   = 0;
+		this.health = 100;
 		setRangeVision(rangeVision);
 		setPosition(position);
 
 	}
 
 	public int isAlive() {
-		return health;
+		return this.health;
 	}
 
 	public void setLife(int life) {
@@ -27,41 +25,13 @@ public abstract class Animal {
 
 	
 	public String getColor() {
-		return color;
+		return this.color;
 	}
 	
-	public void setColor() {
-		if(this.color == "orange" || this.color == "ORANGE") {
-			if(getHealth() >= 70) {
-				this.color =  "orange";
-			}
-			if( 40 <= getHealth() || getHealth() < 70) {
-				this.color =  "pink";
-			}
-			if(0 < getHealth() || getHealth() < 40) {
-				this.color =  "red";;
-			}
-		}
-		
-		if(this.color == "gray" || this.color == "GRAY") {
-			if(getHealth() >= 70) {
-				this.color =  "gray";
-			}
-			if( 40 <= getHealth() || getHealth() < 70) {
-				this.color =  "lightGray";
-			}
-			if(0 < getHealth() || getHealth() < 40) {
-				this.color =  "red";
-			}
-		}
-			
-		else {
-				this.color =  "black";
-		}
-	}
+	public void setColor() {};
 
 	public int getHealth() {
-		return health;
+		return this.health;
 	}
 
 	public void setHealth(int health) {
@@ -69,7 +39,7 @@ public abstract class Animal {
 	}
 
 	public Coordinates[] getRangeVision() {
-		return rangeVision;
+		return this.rangeVision;
 	}
 
 	public void setRangeVision(Coordinates[] rangeVision) {
@@ -77,7 +47,7 @@ public abstract class Animal {
 	}
 
 	public Coordinates getPosition() {
-		return position;
+		return this.position;
 	}
 
 	public void setPosition(Coordinates position) {
@@ -87,8 +57,8 @@ public abstract class Animal {
 	
 	public void setAllNull() {
 		this.color       = null;
-		this.health		 = (Integer) null;
-		this.life		 = (Integer) null;
+		this.health		 = 0;
+		this.life		 = 0;
 		this.position	 = null;
 		this.rangeVision = null;
 	}
@@ -106,6 +76,7 @@ public abstract class Animal {
 		}
 			
 	}
+	public abstract void duplicate();
 	
 	public abstract void move();
 	

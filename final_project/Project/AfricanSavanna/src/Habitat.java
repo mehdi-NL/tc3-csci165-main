@@ -1,42 +1,49 @@
 
-public abstract class Habitat {
+public class Habitat {
 	
-	private int[][] color;
-	private int [][] area;
+	private String color;
+	private Coordinates position;
 	private String property;
 	
-	public Habitat(int[][] color, int[][] area, String property) {
+	public Habitat(Coordinates position) {
 		
-		this.color 	  = color;
-		this.area  	  = area;
-		this.property = property;
+		this.position  	  = position;
+		setColorProperty();
+		
+		
 		
 	}
-    // check what getters and setters are needed
-	public int[][] getColor() {
+
+	public void setColorProperty() {
+		int row = position.getRow();
+		
+		if(row == 99) {
+			this.color = "blue";
+			this.property = "water";
+		}
+		if(row > 32 && row < 66) {
+			this.color = "green";
+			this.property = "invisible";
+		}
+		if(row >= 0 && row < 33 || row > 65 && row < 99) {
+			this.color = "yellow";
+			this.property = "none";
+		}
+		
+		
+	}
+
+	public String getColor() {
 		return color;
 	}
 
-	public void setColor(int[][] color) {
-		this.color = color;
-	}
-
-	public int[][] getArea() {
-		return area;
-	}
-
-	public void setArea(int[][] area) {
-		this.area = area;
+	public Coordinates getPosition() {
+		return position;
 	}
 
 	public String getProperty() {
 		return property;
 	}
-
-	public void setProperty(String property) {
-		this.property = property;
-	}
-	
 	
 
 }

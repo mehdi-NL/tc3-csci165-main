@@ -2,49 +2,68 @@
 public class Pair{
 
     private Animal animal;
-    private Coordinates habitat;
+    private Habitat habitat;
     private String color;
+    private Coordinates location;
 
-    public Pair(){
-    	animal = null;
-    	habitat = null;
-    	setColor();		//if coordenate then String color
+    
+    public Pair(Habitat habitat){
+    	this.animal   = null;
+        this.habitat  = habitat;
+        this.location = habitat.getPosition();
+        setColor();
+    }
+
+    public Pair(Animal animal, Habitat habitat){
+    	this.animal  = animal;
+        this.habitat = habitat;
+        this.location = habitat.getPosition();
+        setColor();
     }
     
-    public Pair(Coordinates secondItem){
-    	animal = null;
-        habitat = secondItem;
+    public void setAnimal(Animal newAnimal){
+    	this.animal = newAnimal;
+    	this.location = habitat.getPosition();
+    	setColor();
     }
 
-    public Pair(Animal firstItem, Coordinates secondItem){
-    	animal = firstItem;
-        habitat = secondItem;
+    public void setHabitat(Habitat newHabitat){
+    	this.habitat = newHabitat;
+    	setColor();
     }
 
-    public void setFirst(Animal newFirst){
-    	animal = newFirst;
-    }
-
-    public void setSecond(Coordinates newSecond){
-    	habitat = newSecond;
-    }
-
-    public Animal getFirst(){
+    public Animal getAnimal(){
         return animal;
     }
 
-    public Coordinates getSecond(){
+    public Habitat getHabitat(){
         return habitat;
-    }
-    
-    public Pair getPAir(Coordinates position) {
-		return null;
-    	
     }
 
     public String toString(){
   
-        return  getFirst().toString() + getSecond().toString() ;
+        return  getAnimal().toString() + getHabitat().toString() ;
     }
+    
+    public void setColor() {
+    	if(animal instanceof Animal) {
+    		this.color = animal.getColor();
+    	}
+    	else {
+    		this.color = habitat.getColor();
+    	}
+    }
+    
+    public String getColor() {
+    	setColor();
+    	return color;
+    }
+    
+    public Coordinates getPosition() {
+    	
+    	return habitat.getPosition();
+    	
+    }
+    
 }
 
